@@ -1,0 +1,14 @@
+# eclipse config files
+.settings/
+.classpath
+.project
+
+# maven dir
+target/
+
+# local shell
+*.sh
+*.out
+
+# any log files
+*.log
