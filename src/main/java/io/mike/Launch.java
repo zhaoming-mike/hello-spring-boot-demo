@@ -11,12 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.mike.bean.Kiko;
 import io.mike.bean.Mike;
+import other.system.service.BusinessService;
 
 /**
  * @author zhaoming
@@ -26,6 +29,7 @@ import io.mike.bean.Mike;
 @RestController
 @EnableAutoConfiguration
 @ComponentScan
+@ImportResource(locations="classpath:old-config-for-beans.xml")
 public class Launch {
 	
 	@Autowired
@@ -36,6 +40,12 @@ public class Launch {
 	
 	@Autowired
 	private Mike mike;
+	
+	@Resource
+	private Kiko kiko;
+	
+	@Autowired
+	private BusinessService businessService;
 	
 	@RequestMapping("/")
 	String home() {
@@ -50,6 +60,9 @@ public class Launch {
 		}
 		
 		System.out.println(ToStringBuilder.reflectionToString(mike));
+		System.out.println(ToStringBuilder.reflectionToString(kiko));
+		
+		System.out.println(businessService);
 		
 		return String.valueOf(System.currentTimeMillis() + " = " + queryForList.size() );
 	}

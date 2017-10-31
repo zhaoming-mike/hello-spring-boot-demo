@@ -10,7 +10,14 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Mike {
-
-	@Value("a")
+	
+	@Value("${mike.name}")
 	private String name;
+	
+	@Value("#{kiko.name}")
+	private String namea;
+	
+	@Value("#{'${kiko.name}'}")
+	private String nameb;
+	
 }
